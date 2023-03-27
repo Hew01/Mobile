@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Image, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 
-const OpenSeaAPI = () => {
+const App = () => {
   const [assets, setAssets] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OpenSeaAPI;
+export default App;
