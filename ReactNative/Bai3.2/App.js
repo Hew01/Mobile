@@ -50,12 +50,12 @@ const App = () => {
         <Stack.Screen
           name="ProductList"
           component={ProductListScreen}
-          options={{ title: 'Products' }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="ProductDetail"
           component={ProductDetailScreen}
-          options={{ title: 'Product Detail' }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     );

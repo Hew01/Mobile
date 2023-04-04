@@ -5,8 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import PRODUCTS from '../products';
 
 const ProductDetailScreen = ({ route, navigation }) => {
-  const { id } = route.params;
-  const product = PRODUCTS.find((p) => p.id === id);
+  const product = route.params.product;
 
   const [isFavorite, setIsFavorite] = useState(product.isFavorite);
 
