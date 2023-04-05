@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Icon from 'react-native-ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import PRODUCTS from '../products';
 
 const ProductListScreen = () => {
@@ -56,12 +56,11 @@ const ProductListScreen = () => {
           >
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Icon
-                //name={item.isFavorite ? 'heart' : 'heart-outline'}
-                name='heart'
+                name={item.isFavorite ? "heart" : "heart-outline"}
+                //name="heart"
                 size={24}
                 color="red"
                 onPress={() => toggleFavorite(item.id)}
-                style={{ marginLeft: 20 }}
               />
               <View style={{ marginLeft: 20 }}>
                 <Text style={styles.productName}>{item.name}</Text>
