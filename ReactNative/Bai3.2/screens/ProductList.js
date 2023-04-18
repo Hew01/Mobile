@@ -54,6 +54,7 @@ const ProductListScreen = () => {
               })
             }
           >
+
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Icon
                 name={item.isFavorite ? "heart" : "heart-outline"}
