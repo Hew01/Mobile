@@ -1,4 +1,5 @@
 
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useState } from 'react';
 import {
@@ -14,12 +15,11 @@ import {
   View,
 } from 'react-native';
 
-
-
 const App = () => {
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
   const [isLogin,setIsLogin] = useState(false);
+  const navtigation = useNavigation();
 
   function loginCheck(){
     if(username=='user' && password=='123456')
@@ -30,11 +30,7 @@ const App = () => {
 
   if(isLogin==true)
   {
-    return(
-      <Text>
-        Login succeed
-      </Text>
-    )
+    navtigation.navigate('ClassList');
   }
   else{
     return (
