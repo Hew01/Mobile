@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import * as SQLite from 'expo-sqlite';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 const db = SQLite.openDatabase('mydb36.db');
 
 export default function ConstantsScreen() {
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     db.transaction(tx => {
@@ -22,15 +25,22 @@ export default function ConstantsScreen() {
     });
   }, []);
 
-  const renderItem = ({ item }) => {
+  const onPressConstant = (item) => {
+    navigation.navigate('ClassDetails', {constantData: item});
+  }
+
+  const renderConstantItem = ({ item }) => {
     return (
-      <View style={styles.constantContainer}>
-        <Text style={styles.constantText}>ID Name: {item.idname}</Text>
-        <Text style={styles.constantText}>Name: {item.name}</Text>
-        <Text style={styles.constantText}>Quantity: {item.quantity}</Text>
-      </View>
+      <TouchableOpacity onPress={() => onPressConstant(item)}>
+        <View style={styles.constantContainer}>
+          <Text style={styles.constantText}>ID Name: {item.idname}</Text>
+          <Text style={styles.constantText}>Name: {item.name}</Text>
+          <Text style={styles.constantText}>Quantity: {item.quantity}</Text>
+        </View>
+      </TouchableOpacity>
     );
   };
+
 return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -38,7 +48,7 @@ return (
       </View>
       <FlatList
         data={data}
-        renderItem={renderItem}
+        renderItem={renderConstantItem}
         keyExtractor={item => item.id.toString()}
         style={styles.flatList}
         contentContainerStyle={styles.flatListContent}
@@ -64,15 +74,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-  flatList: {
-    marginTop: 20,
-    borderRadius: 10,
-    backgroundColor: '#fff',
-    paddingHorizontal: 10,
-  },
-  flatListContent: {
-    paddingVertical: 10,
-  },
   constantContainer: {
     borderWidth: 1,
     borderColor: 'gray',
@@ -83,5 +84,23 @@ const styles = StyleSheet.create({
   constantText: {
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  flatList: {
+    marginTop: 20,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+  },
+  flatListContent: {
+    paddingBottom: 20,
+  },
+  studentContainer: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    padding: 10,
+    marginVertical: 10,
+  },
+  studentText: {
+    fontSize: 16,
   },
 });
