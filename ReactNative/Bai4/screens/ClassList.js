@@ -4,7 +4,7 @@ import * as SQLite from 'expo-sqlite';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
-const db = SQLite.openDatabase('mydb36.db');
+const db = SQLite.openDatabase('class.db');
 
 export default function ConstantsScreen() {
   const [data, setData] = useState([]);
@@ -15,10 +15,10 @@ export default function ConstantsScreen() {
       tx.executeSql(
         'CREATE TABLE IF NOT EXISTS constants (id INTEGER PRIMARY KEY AUTOINCREMENT, idname TEXT, name TEXT, quantity INTEGER);'
       );
-      tx.executeSql('INSERT INTO constants (idname, name, quantity) VALUES (?, ?, ?)', ['cid1', 'thien1', 10]);
-      tx.executeSql('INSERT INTO constants (idname, name, quantity) VALUES (?, ?, ?)', ['cid2', 'thien2', 20]);
-      tx.executeSql('INSERT INTO constants (idname, name, quantity) VALUES (?, ?, ?)', ['cid3', 'thien3', 30]);
-      tx.executeSql('INSERT INTO constants (idname, name, quantity) VALUES (?, ?, ?)', ['cid4', 'thien4', 40]);
+      tx.executeSql('INSERT INTO constants (idname, name, quantity) VALUES (?, ?, ?)', ['Class1', 'Class001', 10]);
+      tx.executeSql('INSERT INTO constants (idname, name, quantity) VALUES (?, ?, ?)', ['Class2', 'Class002', 20]);
+      tx.executeSql('INSERT INTO constants (idname, name, quantity) VALUES (?, ?, ?)', ['Class3', 'Class003', 30]);
+      tx.executeSql('INSERT INTO constants (idname, name, quantity) VALUES (?, ?, ?)', ['Class4', 'Class004', 40]);
       tx.executeSql('SELECT * FROM constants', [], (_, { rows }) =>
         setData(rows._array)
       );
@@ -33,9 +33,9 @@ export default function ConstantsScreen() {
     return (
       <TouchableOpacity onPress={() => onPressConstant(item)}>
         <View style={styles.constantContainer}>
-          <Text style={styles.constantText}>ID Name: {item.idname}</Text>
+          <Text style={styles.constantText}>ID: {item.idname}</Text>
           <Text style={styles.constantText}>Name: {item.name}</Text>
-          <Text style={styles.constantText}>Quantity: {item.quantity}</Text>
+          <Text style={styles.constantText}>Students: {item.quantity}</Text>
         </View>
       </TouchableOpacity>
     );
